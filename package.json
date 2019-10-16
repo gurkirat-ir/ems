@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "forever": "pm2 start server/server.js",
+    "start": "pm2 start server/server.js",
+    "log": "pm2 logs server",
     "stop": "pm2 stop all",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
