@@ -2,7 +2,7 @@
   <v-container grid-list-xs>
     <v-card class="elevation-10" min-height="100%" height="100%">
       <v-card-title primary-title>
-        {{task.title}}
+        {{ task.title }}
         <v-spacer></v-spacer>
         <v-radio-group @change="c_status" v-model="status" row>
           <strong>Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
@@ -22,37 +22,43 @@
             </center>
             <p>
               <strong>Description:&nbsp;</strong>
-              <span style="font-family: monospace">{{task.description}}</span>
+              <span style="font-family: monospace">{{ task.description }}</span>
             </p>
             <p>
               <strong>Project:&nbsp;</strong>
               <span>
                 <router-link
-                  :to="{name:'view-project', params:{id: task.project._id}}"
-                >{{task.project.title}}</router-link>
+                  :to="{
+                    name: 'view-project',
+                    params: { id: task.project._id }
+                  }"
+                  >{{ task.project.title }}</router-link
+                >
               </span>
             </p>
             <p>
               <strong>Assigned To:&nbsp;</strong>
               <span>
-                <a :href="`mailto:${task.empAssigned.email}`">{{task.empAssigned.name}}</a>
+                <a :href="`mailto:${task.empAssigned.email}`">
+                  {{ task.empAssigned.name }}
+                </a>
               </span>
             </p>
             <p>
               <strong>Created On:&nbsp;</strong>
-              {{getDate(task.createdOn)}}
+              {{ getDate(task.createdOn) }}
             </p>
             <p>
               <strong>Expected Time of Completion:&nbsp;</strong>
-              {{getDate(task.timeTaken)}}
+              {{ getDate(task.timeTaken) }}
             </p>
             <p v-show="!task.completedOn">
               <strong>Deadline:&nbsp;</strong>
-              {{getDate(task.deadline)}}
+              {{ getDate(task.deadline) }}
             </p>
             <p v-show="task.completedOn">
               <strong>Completed On:&nbsp;</strong>
-              {{getDate(task.completedOn)}}
+              {{ getDate(task.completedOn) }}
             </p>
           </v-flex>
           <v-flex xs12 md7 pa-2>
@@ -94,7 +100,7 @@
       </v-card-text>
     </v-card>
     <v-snackbar v-model="snack.show" color="black" right bottom :timeout="4000">
-      {{snack.text}}
+      {{ snack.text }}
       <v-btn text icon @click.native="snack.show = false">
         <v-icon>close</v-icon>
       </v-btn>
@@ -139,14 +145,14 @@ export default {
         this.msg = "";
       }
     },
-    async c_status(stat) {
+    async c_status(status) {
       let c = await Axios.put(
         "http://localhost:3000/api/task/one/" +
           this.pid +
           "/" +
           this.tid +
           "/status",
-        { status: this.status },
+        { status },
         { withCredentials: true }
       );
       this.snack.show = true;

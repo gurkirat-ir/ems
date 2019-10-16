@@ -4,35 +4,52 @@
       <v-card-title primary-title>All Tasks from All Projects</v-card-title>
       <v-card-text>
         <v-data-table :headers="headers" :items="tasks">
-          <template v-slot:item.createdOn="{value}">{{getDate(value)}}</template>
-          <template v-slot:item.deadline="{value, item}">
+          <template v-slot:item.createdOn="{ value }">
+            {{ getDate(value) }}
+          </template>
+          <template v-slot:item.deadline="{ value, item }">
             <v-chip
               class="white--text"
               :title="getDate(value)"
               color="red"
               v-show="getDeadlineDate(value)[1]"
-            >ENDED {{getDeadlineDate(value)[0]}}</v-chip>
+              >ENDED {{ getDeadlineDate(value)[0] }}</v-chip
+            >
             <v-chip
               class="white--text"
               color="yellow darken-2"
               :title="getDate(value)"
               v-show="!getDeadlineDate(value)[1]"
-            >ENDS {{getDeadlineDate(value)[0]}}</v-chip>
+              >ENDS {{ getDeadlineDate(value)[0] }}</v-chip
+            >
           </template>
-          <template v-slot:item.status="{value, item}">
-            <v-chip outlined color="red" label v-show="value=='PENDING'">{{value}}</v-chip>
-            <v-chip outlined color="green" label v-show="value=='COMPLETED'">{{value}}</v-chip>
-            <v-chip outlined color="blue" label v-show="value=='ON HOLD'">{{value}}</v-chip>
+          <template v-slot:item.status="{ value, item }">
+            <v-chip outlined color="red" label v-show="value == 'PENDING'">
+              {{ value }}
+            </v-chip>
+            <v-chip
+              outlined
+              color="green"
+              label
+              v-show="value == 'COMPLETED'"
+              >{{ value }}</v-chip
+            >
+            <v-chip outlined color="blue" label v-show="value == 'ON HOLD'">
+              {{ value }}
+            </v-chip>
           </template>
-          <template v-slot:item.actions="{item}">
+          <template v-slot:item.actions="{ item }">
             <v-tooltip bottom>
-              <template v-slot:activator="{on}">
+              <template v-slot:activator="{ on }">
                 <v-btn
                   v-on="on"
                   text
                   icon
                   color="green"
-                  :to="{name:'view-task', params:{pid:item.project._id, tid:item._id}}"
+                  :to="{
+                    name: 'view-task',
+                    params: { pid: item.project._id, tid: item._id }
+                  }"
                 >
                   <v-icon>remove_red_eye</v-icon>
                 </v-btn>
@@ -40,13 +57,16 @@
               <span>View Task</span>
             </v-tooltip>
             <v-tooltip bottom>
-              <template v-slot:activator="{on}">
+              <template v-slot:activator="{ on }">
                 <v-btn
                   v-on="on"
                   text
                   icon
                   color="deep-purple"
-                  :to="{name:'edit-task', params:{pid:item.project._id, tid:item._id}}"
+                  :to="{
+                    name: 'edit-task',
+                    params: { pid: item.project._id, tid: item._id }
+                  }"
                 >
                   <v-icon>edit</v-icon>
                 </v-btn>
@@ -115,7 +135,6 @@ export default {
       let deadline = new Date(v);
       let now = new Date(Date.now());
       let diff = deadline.getTime() - now.getTime();
-      let date = this.getDate(v);
       return [
         moment(deadline)
           .from(now)
@@ -138,5 +157,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

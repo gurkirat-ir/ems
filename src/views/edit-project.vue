@@ -6,10 +6,18 @@
         <v-form ref="form" v-model="form">
           <v-layout row wrap>
             <v-flex xs12 md6 pa-2>
-              <v-text-field color="black" label="Title" v-model="project.title"></v-text-field>
+              <v-text-field
+                color="black"
+                label="Title"
+                v-model="project.title"
+              ></v-text-field>
             </v-flex>
             <v-flex xs12 md6 pa-2>
-              <v-text-field color="black" label="Deadline" v-model="project.deadline"></v-text-field>
+              <v-text-field
+                color="black"
+                label="Deadline"
+                v-model="project.deadline"
+              ></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row wrap>
@@ -17,14 +25,26 @@
               <v-radio-group v-model="project.status" row>
                 <strong>Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                 <v-radio color="red" label="Pending" value="PENDING"></v-radio>
-                <v-radio color="orange" label="On Hold" value="ON HOLD"></v-radio>
-                <v-radio color="green" label="Completed" value="COMPLETED"></v-radio>
+                <v-radio
+                  color="orange"
+                  label="On Hold"
+                  value="ON HOLD"
+                ></v-radio>
+                <v-radio
+                  color="green"
+                  label="Completed"
+                  value="COMPLETED"
+                ></v-radio>
               </v-radio-group>
             </v-flex>
           </v-layout>
           <v-layout row wrap>
             <v-flex xs12>
-              <v-textarea color="black" v-model="project.description" label="Description"></v-textarea>
+              <v-textarea
+                color="black"
+                v-model="project.description"
+                label="Description"
+              ></v-textarea>
             </v-flex>
           </v-layout>
         </v-form>
@@ -37,7 +57,7 @@
       </v-card-actions>
     </v-card>
     <v-snackbar v-model="snack.show" color="black" right bottom :timeout="4000">
-      {{snack.text}}
+      {{ snack.text }}
       <v-btn text icon @click.native="snack.show = false">
         <v-icon>close</v-icon>
       </v-btn>
@@ -100,5 +120,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

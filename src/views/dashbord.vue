@@ -1,12 +1,12 @@
 <template>
   <v-container grid-list-xs fluid>
-    <v-layout row wrap v-show="role=='hr'">
+    <v-layout row wrap v-show="role == 'hr'">
       <v-flex xs12>
         <hr-employee></hr-employee>
       </v-flex>
     </v-layout>
 
-    <v-layout row wrap v-show="role=='employer'" mb-4>
+    <v-layout row wrap v-show="role == 'employer'" mb-4>
       <v-flex xs6 pa-2>
         <empr-employee></empr-employee>
       </v-flex>
@@ -15,13 +15,13 @@
       </v-flex>
     </v-layout>
 
-    <v-layout row wrap v-show="role=='employer'">
+    <v-layout row wrap v-show="role == 'employer'">
       <v-flex xs12 pa-2>
         <all-tasks></all-tasks>
       </v-flex>
     </v-layout>
 
-    <v-layout row wrap v-show="role=='employee'">
+    <v-layout row wrap v-show="role == 'employee'">
       <v-flex xs12>
         <my-tasks></my-tasks>
       </v-flex>
@@ -62,5 +62,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

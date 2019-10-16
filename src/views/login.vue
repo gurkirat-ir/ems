@@ -10,7 +10,10 @@
               <v-text-field
                 v-model="email"
                 label="E-mail"
-                :rules="[v=>!!v||'Required', v=>/^[a-z].+@[a-z0-9]+\.[a-z]+$/i.test(v)||'Invalid Email']"
+                :rules="[
+                  v => !!v || 'Required',
+                  v => /^[a-z].+@[a-z0-9]+\.[a-z]+$/i.test(v) || 'Invalid Email'
+                ]"
                 color="secondary"
               ></v-text-field>
             </v-form>
@@ -19,7 +22,7 @@
                 v-model="password"
                 label="Password"
                 type="password"
-                :rules="[v=>!!v||'Required']"
+                :rules="[v => !!v || 'Required']"
                 color="secondary"
               ></v-text-field>
             </v-form>
@@ -31,14 +34,21 @@
               color="black"
               href="/#/reset-password"
               @click.prevent="reset_password"
-            >reset password</v-btn>
+              >reset password</v-btn
+            >
             <v-spacer></v-spacer>
             <v-btn color="black" class="white--text" @click="login">
               <v-icon left>exit_to_app</v-icon>login
             </v-btn>
           </v-card-actions>
-          <v-snackbar v-model="snack.show" color="black" right bottom :timeout="4000">
-            {{snack.text}}
+          <v-snackbar
+            v-model="snack.show"
+            color="black"
+            right
+            bottom
+            :timeout="4000"
+          >
+            {{ snack.text }}
             <v-btn text icon @click.native="snack.show = false">
               <v-icon>close</v-icon>
             </v-btn>
@@ -110,5 +120,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -7,24 +7,40 @@
           <v-card-title primary-title>New User</v-card-title>
           <v-card-text>
             <v-form v-model="form" ref="form">
-              <v-text-field color="black" :rules="[v=>!!v||'Required']" label="Name" v-model="name"></v-text-field>
               <v-text-field
                 color="black"
-                :rules="[v=>!!v||'Required', v=>/^[a-z].+@[a-z0-9]+\.[a-z]+$/i.test(v)||'Invalid Email']"
+                :rules="[v => !!v || 'Required']"
+                label="Name"
+                v-model="name"
+              ></v-text-field>
+              <v-text-field
+                color="black"
+                :rules="[
+                  v => !!v || 'Required',
+                  v => /^[a-z].+@[a-z0-9]+\.[a-z]+$/i.test(v) || 'Invalid Email'
+                ]"
                 label="Email"
                 v-model="email"
               ></v-text-field>
               <v-text-field
                 color="black"
-                :rules="[v=>!!v||'Required']"
+                :rules="[v => !!v || 'Required']"
                 label="Password"
                 v-model="password"
               ></v-text-field>
               <v-radio-group v-model="role" row>
                 <strong>ROLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                 <v-radio color="black" label="HR" value="hr"></v-radio>
-                <v-radio color="black" label="Employee" value="employee"></v-radio>
-                <v-radio color="black" label="Employer" value="employer"></v-radio>
+                <v-radio
+                  color="black"
+                  label="Employee"
+                  value="employee"
+                ></v-radio>
+                <v-radio
+                  color="black"
+                  label="Employer"
+                  value="employer"
+                ></v-radio>
               </v-radio-group>
             </v-form>
           </v-card-text>
@@ -39,7 +55,7 @@
       </v-flex>
     </v-layout>
     <v-snackbar v-model="snack.show" color="black" right bottom :timeout="4000">
-      {{snack.text}}
+      {{ snack.text }}
       <v-btn text icon @click.native="snack.show = false">
         <v-icon>close</v-icon>
       </v-btn>
@@ -98,5 +114,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

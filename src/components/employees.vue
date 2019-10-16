@@ -3,7 +3,11 @@
     <v-card class="elevation-10">
       <v-card-title primary-title>List All Employee</v-card-title>
       <v-card-text>
-        <v-data-table :headers="headers" :items-per-page="5" :items="users"></v-data-table>
+        <v-data-table
+          :headers="headers"
+          :items-per-page="5"
+          :items="users"
+        ></v-data-table>
       </v-card-text>
     </v-card>
   </div>
@@ -34,5 +38,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

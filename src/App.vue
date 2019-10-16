@@ -8,15 +8,20 @@
       <v-spacer></v-spacer>
 
       <v-toolbar-items>
-        <v-btn text :to="{name:'dashboard'}" v-show="get_Login()">
+        <v-btn text :to="{ name: 'dashboard' }" v-show="get_Login()">
           <v-icon left>dashboard</v-icon>
           <span class="mr-2">dashboard</span>
         </v-btn>
-        <v-btn text href="/#/logout" @click.prevent="logout" v-show="get_Login()">
+        <v-btn
+          text
+          href="/#/logout"
+          @click.prevent="logout"
+          v-show="get_Login()"
+        >
           <v-icon left>power_settings_new</v-icon>
           <span class="mr-2">Logout</span>
         </v-btn>
-        <v-btn text :to="{name:'login'}" v-show="!get_Login()">
+        <v-btn text :to="{ name: 'login' }" v-show="!get_Login()">
           <v-icon left>exit_to_app</v-icon>
           <span class="mr-2">Login</span>
         </v-btn>

@@ -2,9 +2,14 @@
   <v-container grid-list-xs>
     <v-card class="elevation-10">
       <v-card-title primary-title>
-        {{project.title}}
+        {{ project.title }}
         <v-spacer></v-spacer>
-        <v-btn text icon color="primary" :to="{name:'edit-project', params:{id}}">
+        <v-btn
+          text
+          icon
+          color="primary"
+          :to="{ name: 'edit-project', params: { id } }"
+        >
           <v-icon>edit</v-icon>
         </v-btn>
       </v-card-title>
@@ -12,31 +17,38 @@
         <br />
         <p>
           <strong>Description:&nbsp;&nbsp;</strong>
-          <span style="font-family: monospace;">{{project.description}}</span>
+          <span style="font-family: monospace;">{{ project.description }}</span>
         </p>
         <p>
           <strong>Status:&nbsp;&nbsp;</strong>
-          {{project.status}}
+          {{ project.status }}
         </p>
         <p>
           <strong>Start Date:&nbsp;</strong>
-          {{getDate(project.createdOn)}}
+          {{ getDate(project.createdOn) }}
         </p>
         <p>
           <strong>End Date:&nbsp;</strong>
-          {{getDate(project.deadline)}}
+          {{ getDate(project.deadline) }}
         </p>
-        <p v-show="project.tasks.length>0">
+        <p v-show="project.tasks.length > 0">
           <strong>Tasks:&nbsp;</strong>
           <span>
             <ul>
               <li v-for="(task, i) in project.tasks" :key="i">
                 "
-                <b>{{task.title}}</b>" was created on "
-                <b>{{getDate(task.createdOn)}}</b>" and due on "
-                <b>{{getDate(task.deadline)}}</b>". This task is "
-                <b>{{task.status}}</b>".
-                <router-link :to="{name:'view-task', params:{pid:id,  tid:task._id}}">VIEW</router-link>
+                <b>{{ task.title }}</b
+                >" was created on " <b>{{ getDate(task.createdOn) }}</b
+                >" and due on " <b>{{ getDate(task.deadline) }}</b
+                >". This task is " <b>{{ task.status }}</b
+                >".
+                <router-link
+                  :to="{
+                    name: 'view-task',
+                    params: { pid: id, tid: task._id }
+                  }"
+                  >VIEW</router-link
+                >
               </li>
             </ul>
           </span>
@@ -46,7 +58,7 @@
           <span>
             <ul>
               <li v-for="(emp, i) in project.empAssigned" :key="i">
-                <a :href="`mailto:${emp.email}`">{{emp.name}}</a>
+                <a :href="`mailto:${emp.email}`">{{ emp.name }}</a>
               </li>
             </ul>
           </span>
@@ -93,5 +105,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

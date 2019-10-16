@@ -1,11 +1,11 @@
 <template>
   <div>
     <strong class="blue--text">
-      <a :href="`mailto:${email}`">{{username}}</a>
-    </strong>&nbsp;&nbsp;
-    <span style="font-family: monospace">[{{time}}]</span>
+      <a :href="`mailto:${email}`">{{ username }}</a> </strong
+    >&nbsp;&nbsp;
+    <span style="font-family: monospace">[{{ time }}]</span>
     <br />
-    <pre>{{content}}</pre>
+    <pre>{{ content }}</pre>
   </div>
 </template>
 
@@ -15,5 +15,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

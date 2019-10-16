@@ -11,17 +11,17 @@
                 <v-flex xs12 md6 pa-2>
                   <v-text-field
                     color="secondary"
-                    :rules="[v=>!!v||'Required']"
+                    :rules="[v => !!v || 'Required']"
                     label="Title"
                     v-model="title"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs12 md6 pa-2>
                   <v-dialog persistent v-model="model" max-width="500">
-                    <template v-slot:activator="{on}">
+                    <template v-slot:activator="{ on }">
                       <v-text-field
                         color="secondary"
-                        :rules="[v=>!!v||'Required']"
+                        :rules="[v => !!v || 'Required']"
                         v-model="date"
                         label="Deadline"
                         v-on="on"
@@ -32,13 +32,15 @@
                       full-width
                       locale="in_HI"
                       color="black"
-                      :rules="[v=>!!v||'Required']"
+                      :rules="[v => !!v || 'Required']"
                       v-model="date"
                       :landscape="false"
                     >
                       <v-spacer></v-spacer>
                       <v-card-actions>
-                        <v-btn text color="black" @click="model=false">OK</v-btn>
+                        <v-btn text color="black" @click="model = false"
+                          >OK</v-btn
+                        >
                       </v-card-actions>
                     </v-date-picker>
                   </v-dialog>
@@ -46,7 +48,11 @@
               </v-layout>
               <v-layout row wrap>
                 <v-flex xs12 pa-2>
-                  <v-textarea color="black" label="Description" v-model="desc"></v-textarea>
+                  <v-textarea
+                    color="black"
+                    label="Description"
+                    v-model="desc"
+                  ></v-textarea>
                 </v-flex>
               </v-layout>
             </v-form>
@@ -62,7 +68,7 @@
       </v-flex>
     </v-layout>
     <v-snackbar v-model="snack.show" color="black" right bottom :timeout="4000">
-      {{snack.text}}
+      {{ snack.text }}
       <v-btn text icon @click.native="snack.show = false">
         <v-icon>close</v-icon>
       </v-btn>
@@ -115,5 +121,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

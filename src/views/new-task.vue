@@ -11,7 +11,7 @@
                 <v-flex xs12 md6 pa-2>
                   <v-text-field
                     color="black"
-                    :rules="[v=>!!v||'Required']"
+                    :rules="[v => !!v || 'Required']"
                     label="Title"
                     v-model="model.title"
                   ></v-text-field>
@@ -30,38 +30,50 @@
               <v-layout row wrap>
                 <v-flex xs12 md6 pa-2>
                   <v-dialog v-model="model1" persistent max-width="500">
-                    <template v-slot:activator="{on}">
+                    <template v-slot:activator="{ on }">
                       <v-text-field
                         color="secondary"
-                        :rules="[v=>!!v||'Required']"
+                        :rules="[v => !!v || 'Required']"
                         v-model="model.deadline"
                         label="Deadline"
                         v-on="on"
                       ></v-text-field>
                     </template>
-                    <v-date-picker full-width color="black" v-model="model.deadline">
+                    <v-date-picker
+                      full-width
+                      color="black"
+                      v-model="model.deadline"
+                    >
                       <v-spacer></v-spacer>
                       <v-card-actions>
-                        <v-btn text color="black" @click="model1=false">OK</v-btn>
+                        <v-btn text color="black" @click="model1 = false"
+                          >OK</v-btn
+                        >
                       </v-card-actions>
                     </v-date-picker>
                   </v-dialog>
                 </v-flex>
                 <v-flex xs12 md6 pa-2>
                   <v-dialog v-model="model2" persistent max-width="500">
-                    <template v-slot:activator="{on}">
+                    <template v-slot:activator="{ on }">
                       <v-text-field
                         color="secondary"
-                        :rules="[v=>!!v||'Required']"
+                        :rules="[v => !!v || 'Required']"
                         v-model="model.timeTaken"
                         label="Minimum Time Taken"
                         v-on="on"
                       ></v-text-field>
                     </template>
-                    <v-date-picker full-width color="black" v-model="model.timeTaken">
+                    <v-date-picker
+                      full-width
+                      color="black"
+                      v-model="model.timeTaken"
+                    >
                       <v-spacer></v-spacer>
                       <v-card-actions>
-                        <v-btn text color="black" @click="model2=false">OK</v-btn>
+                        <v-btn text color="black" @click="model2 = false"
+                          >OK</v-btn
+                        >
                       </v-card-actions>
                     </v-date-picker>
                   </v-dialog>
@@ -69,7 +81,11 @@
               </v-layout>
               <v-layout row wrap>
                 <v-flex xs12 pa-2>
-                  <v-textarea color="black" label="Description" v-model="model.description"></v-textarea>
+                  <v-textarea
+                    color="black"
+                    label="Description"
+                    v-model="model.description"
+                  ></v-textarea>
                 </v-flex>
               </v-layout>
             </v-form>
@@ -85,7 +101,7 @@
       </v-flex>
     </v-layout>
     <v-snackbar v-model="snack.show" color="black" right bottom :timeout="4000">
-      {{snack.text}}
+      {{ snack.text }}
       <v-btn text icon @click.native="snack.show = false">
         <v-icon>close</v-icon>
       </v-btn>
@@ -169,5 +185,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
