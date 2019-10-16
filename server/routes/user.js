@@ -2,6 +2,8 @@ const router = require("express").Router();
 const User = require("../model/user");
 const mailer = require("@sendgrid/mail");
 const { createHash } = require("crypto");
+const conf = require("../../config");
+
 mailer.setApiKey(process.env.EMS_EMAIL_API);
 
 router.get("/whoami", async (req, res) => {
@@ -158,7 +160,7 @@ router.put("/reset-password", async (req, res) => {
       .update(p)
       .digest("base64");
     await mailer.send({
-      from: process.env.EMS_EMAIL_FROM,
+      from: conf.api.mail,
       to: user.email,
       subject: "[EMS] Reset Password Instructions",
       html: `Hello ${user.name}<br><br>It seems you have requested for new password. Your new password is <strong><pre>${p}</pre></strong><br><br><center><i>This email is sent by the bot. Do not reply to this mail</i></center>`

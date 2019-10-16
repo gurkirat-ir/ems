@@ -8,6 +8,7 @@ const morgan = require("morgan");
 const { randomBytes } = require("crypto");
 const path = require("path");
 const fs = require("fs");
+const conf = require("../config");
 
 // creating app
 const app = express();
@@ -16,7 +17,7 @@ const app = express();
 mongoose.Promise = require("bluebird");
 (async () => {
   try {
-    mongoose.connect(process.env.EMS_DB_URI, {
+    mongoose.connect(conf.db.uri(), {
       useCreateIndex: true,
       useFindAndModify: false,
       useNewUrlParser: true,
@@ -80,7 +81,7 @@ app.use("*", (_req, res) => {
 });
 
 // listening to the server
-let port = parseInt(process.env.EMS_PORT);
+let port = parseInt(conf.port);
 app.listen(port, () => {
   console.log("HTTP listening on %d", port);
 });
