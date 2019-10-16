@@ -56,7 +56,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "http://localhost:8080",
+    origin: "http://ems.4iresearch.com/",
     credentials: true,
     methods: ["GET", "DELETE", "PUT", "POST"]
   })
