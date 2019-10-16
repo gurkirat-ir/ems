@@ -72,11 +72,9 @@ export default {
       this.$refs.form.validate();
       if (!this.form) return;
 
-      let c = await Axios.put(
-        "http://localhost:3000/api/user/one/" + this.id,
-        this.model,
-        { withCredentials: true }
-      );
+      let c = await Axios.put("/api/user/one/" + this.id, this.model, {
+        withCredentials: true
+      });
 
       this.snack.show = true;
       this.snack.text = c.data.message;

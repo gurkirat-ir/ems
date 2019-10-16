@@ -135,7 +135,7 @@ export default {
       data.deadline = new Date(data.deadline);
       data.timeTaken = new Date(data.timeTaken);
       let c = await Axios.put(
-        "http://localhost:3000/api/task/one/" + this.pid + "/" + this.tid,
+        "/api/task/one/" + this.pid + "/" + this.tid,
         data,
         { withCredentials: true }
       );
@@ -155,7 +155,7 @@ export default {
     ...mapActions(["set_Login"]),
     ...mapGetters(["get_Login"]),
     async fetch_users() {
-      let c = await Axios.get("http://localhost:3000/api/user/for-task", {
+      let c = await Axios.get("/api/user/for-task", {
         withCredentials: true
       });
       c.data.users.forEach(user => {
@@ -164,10 +164,9 @@ export default {
       });
     },
     async fetch_task() {
-      let c = await Axios.get(
-        "http://localhost:3000/api/task/one/" + this.pid + "/" + this.tid,
-        { withCredentials: true }
-      );
+      let c = await Axios.get("/api/task/one/" + this.pid + "/" + this.tid, {
+        withCredentials: true
+      });
       this.model.title = c.data.task.title;
       this.model.description = c.data.task.description;
       this.model.deadline = this.getDate(c.data.task.deadline);

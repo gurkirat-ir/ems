@@ -82,10 +82,9 @@ export default {
     ...mapActions(["set_Login"]),
     ...mapGetters(["get_Login"]),
     async fetch_project() {
-      let c = await Axios.get(
-        "http://localhost:3000/api/project/one/" + this.id,
-        { withCredentials: true }
-      );
+      let c = await Axios.get("/api/project/one/" + this.id, {
+        withCredentials: true
+      });
 
       this.project.title = c.data.projects.title;
       this.project.deadline = this.getDate(c.data.projects.deadline);
@@ -93,11 +92,9 @@ export default {
       this.project.status = c.data.projects.status;
     },
     async put_project() {
-      let c = await Axios.put(
-        "http://localhost:3000/api/project/one/" + this.id,
-        this.project,
-        { withCredentials: true }
-      );
+      let c = await Axios.put("/api/project/one/" + this.id, this.project, {
+        withCredentials: true
+      });
       this.snack.show = true;
       this.snack.text = c.data.message;
       if (c.data.success) {

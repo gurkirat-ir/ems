@@ -87,7 +87,7 @@ export default {
   methods: {
     async delete_user(id) {
       if (confirm("Are you sure?")) {
-        let c = await Axios.delete("http://localhost:3000/api/user/one/" + id, {
+        let c = await Axios.delete("/api/user/one/" + id, {
           withCredentials: true
         });
         this.snack.show = true;
@@ -98,7 +98,7 @@ export default {
       }
     },
     async fetch_user() {
-      let c = await Axios.get("http://localhost:3000/api/user/all", {
+      let c = await Axios.get("/api/user/all", {
         withCredentials: true
       });
       this.users = c.data.users;

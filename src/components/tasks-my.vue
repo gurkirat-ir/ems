@@ -125,7 +125,7 @@ export default {
     }
   },
   async created() {
-    let c = await Axios.get("http://localhost:3000/api/task/my", {
+    let c = await Axios.get("/api/task/my", {
       withCredentials: true
     });
     this.tasks = c.data.tasks;

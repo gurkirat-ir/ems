@@ -133,7 +133,7 @@ export default {
     async send_msg() {
       if (this.msg.length == 0) return;
       let c = await Axios.post(
-        "http://localhost:3000/api/comment/new/" + this.tid,
+        "/api/comment/new/" + this.tid,
         { content: this.msg },
         { withCredentials: true }
       );
@@ -147,11 +147,7 @@ export default {
     },
     async c_status(status) {
       let c = await Axios.put(
-        "http://localhost:3000/api/task/one/" +
-          this.pid +
-          "/" +
-          this.tid +
-          "/status",
+        "/api/task/one/" + this.pid + "/" + this.tid + "/status",
         { status },
         { withCredentials: true }
       );
@@ -162,10 +158,9 @@ export default {
       }
     },
     async fetch_comments() {
-      let c = await Axios.get(
-        "http://localhost:3000/api/comment/all/" + this.tid,
-        { withCredentials: true }
-      );
+      let c = await Axios.get("/api/comment/all/" + this.tid, {
+        withCredentials: true
+      });
       this.task.comments = c.data.comments;
     },
     ...mapActions(["set_Login"]),
@@ -175,10 +170,9 @@ export default {
       return `${d1.getFullYear()}/${d1.getMonth() + 1}/${d1.getDate()}`;
     },
     async fetch_task() {
-      let c = await Axios.get(
-        "http://localhost:3000/api/task/one/" + this.pid + "/" + this.tid,
-        { withCredentials: true }
-      );
+      let c = await Axios.get("/api/task/one/" + this.pid + "/" + this.tid, {
+        withCredentials: true
+      });
       this.task = c.data.task;
       this.status = this.task.status;
     }

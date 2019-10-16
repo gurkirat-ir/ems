@@ -92,7 +92,7 @@ export default {
           .digest("base64")
       };
 
-      let c = await Axios.post("http://localhost:3000/api/user/new", doc, {
+      let c = await Axios.post("/api/user/new", doc, {
         withCredentials: true
       });
 

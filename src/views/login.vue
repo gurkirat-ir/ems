@@ -78,7 +78,7 @@ export default {
     async reset_password() {
       this.$refs.form1.validate();
       if (!this.form1) return;
-      let r = await Axios.put("http://localhost:3000/api/user/reset-password", {
+      let r = await Axios.put("/api/user/reset-password", {
         email: this.email
       });
       this.snack.show = true;
@@ -91,7 +91,7 @@ export default {
       if (!this.form1 || !this.form2) return;
 
       let c = await Axios.post(
-        "http://localhost:3000/api/user/login",
+        "/api/user/login",
         {
           email: this.email,
           password: createHash("sha256")

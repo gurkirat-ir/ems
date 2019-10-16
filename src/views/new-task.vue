@@ -139,7 +139,7 @@ export default {
     ...mapActions(["set_Login"]),
     ...mapGetters(["get_Login"]),
     async fetch_users() {
-      let c = await Axios.get("http://localhost:3000/api/user/for-task", {
+      let c = await Axios.get("/api/user/for-task", {
         withCredentials: true
       });
       c.data.users.forEach(user => {
@@ -157,11 +157,9 @@ export default {
       data.deadline = new Date(data.deadline);
       data.timeTaken = new Date(data.timeTaken);
 
-      let r = await Axios.post(
-        "http://localhost:3000/api/task/new/" + this.id,
-        data,
-        { withCredentials: true }
-      );
+      let r = await Axios.post("/api/task/new/" + this.id, data, {
+        withCredentials: true
+      });
 
       this.snack.show = true;
       this.snack.text = r.data.message;

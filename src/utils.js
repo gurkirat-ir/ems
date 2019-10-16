@@ -3,7 +3,7 @@ import axios from "axios";
 export function checkLogin() {
   return new Promise(async (resolve, reject) => {
     try {
-      let resp = await axios.get("http://localhost:3000/api/user/whoami", {
+      let resp = await axios.get("/api/user/whoami", {
         withCredentials: true
       });
 
@@ -21,7 +21,7 @@ export function checkLogin() {
 export function getRole() {
   return new Promise(async (res, rej) => {
     try {
-      let resp = await axios.get("http://localhost:3000/api/user/whoami", {
+      let resp = await axios.get("/api/user/whoami", {
         withCredentials: true
       });
 

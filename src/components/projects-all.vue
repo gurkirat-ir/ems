@@ -120,7 +120,7 @@ export default {
     projects: []
   }),
   async created() {
-    let c = await Axios.get("http://localhost:3000/api/project/all", {
+    let c = await Axios.get("/api/project/all", {
       withCredentials: true
     });
     let projects = Array.from([...c.data.projects]);

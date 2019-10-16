@@ -87,10 +87,9 @@ export default {
       return `${d1.getFullYear()}/${d1.getMonth() + 1}/${d1.getDate()}`;
     },
     async fetch_project() {
-      let c = await Axios.get(
-        "http://localhost:3000/api/project/one/" + this.id,
-        { withCredentials: true }
-      );
+      let c = await Axios.get("/api/project/one/" + this.id, {
+        withCredentials: true
+      });
       this.project = c.data.projects;
     }
   },

@@ -31,7 +31,7 @@ mongoose.Promise = require("bluebird");
 
 // configuring express app
 app.use(express.json());
-app.use(express.static("../dist"));
+app.use(express.static("dist"));
 app.use(
   morgan("combined", {
     stream: fs.createWriteStream("access.log", { flags: "a" })

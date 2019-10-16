@@ -43,7 +43,7 @@ export default {
     ...mapGetters(["get_Login"]),
     ...mapActions(["set_Login"]),
     async logout() {
-      await Axios.delete("http://localhost:3000/api/user/login", {
+      await Axios.delete("/api/user/login", {
         withCredentials: true
       });
       this.set_Login(false);

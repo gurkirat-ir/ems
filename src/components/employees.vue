@@ -30,7 +30,7 @@ export default {
     users: []
   }),
   async created() {
-    let c = await Axios.get("http://localhost:3000/api/user/all-for-employee", {
+    let c = await Axios.get("/api/user/all-for-employee", {
       withCredentials: true
     });
     this.users = c.data.users;

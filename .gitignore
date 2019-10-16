@@ -66,9 +66,8 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
-
+_sessions
 # dotenv environment variables file
-.env
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -79,9 +78,6 @@ typings/
 
 # nuxt.js build output
 .nuxt
-
-# react / gatsby 
-public/
 
 # vuepress build output
 .vuepress/dist

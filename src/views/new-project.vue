@@ -99,7 +99,7 @@ export default {
         description: this.desc,
         deadline: new Date(this.date)
       };
-      let r = await Axios.post("http://localhost:3000/api/project/new", doc, {
+      let r = await Axios.post("/api/project/new", doc, {
         withCredentials: true
       });
       this.snack.show = true;
