@@ -32,9 +32,9 @@ var password = createHash("sha256")
 var role = "hr";
 
 (async () => {
-  await User.db.dropDatabase();
-  console.log("[!] DB Dropped");
-  new User({ name, email, password, role }).save();
+  User.deleteMany({});
+  console.log("[!] Deleted all users");
+  await new User({ name, email, password, role }).save();
   console.log("[!] Created HR");
   console.log("[!] Login Creds %s:%s", email, args[2]);
 })();
