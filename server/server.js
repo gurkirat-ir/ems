@@ -78,7 +78,7 @@ app.use("/api/project", require("./routes/project"));
 app.use("/api/comment", require("./routes/comment"));
 
 app.use("*", (_req, res) => {
-  res.sendFile(path.resolve(path.join("../dist", "index.html")));
+  res.sendFile(path.resolve(path.join("dist", "index.html")));
 });
 
 // listening to the server
