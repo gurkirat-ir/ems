@@ -32,7 +32,6 @@ mongoose.Promise = require("bluebird");
 
 // configuring express app
 app.use(express.json());
-app.use(express.static("dist"));
 app.use(
   morgan("combined", {
     stream: fs.createWriteStream("access.log", { flags: "a" })
@@ -64,6 +63,8 @@ app.use(
 app.use(helmet.hidePoweredBy({ setTo: "4 IR Web Sever Gateway" }));
 app.use(helmet.frameguard());
 app.use(helmet.xssFilter());
+app.use(express.static("dist"));
+
 // making models
 require("./model/comment");
 require("./model/project");
