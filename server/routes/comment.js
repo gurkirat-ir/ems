@@ -2,11 +2,21 @@ const router = require("express").Router();
 const Comment = require("../model/comment");
 const Task = require("../model/task");
 
+/**
+ * @name /new/:task
+ * @method POST
+ * @description Router to add new comment to a task
+ */
 router.post("/new/:task", async (req, res) => {
   try {
+    // check if not logged in hr
     if (req.session.uid && req.session.role != "hr") {
+      // find task by id
       let task = await Task.findById(req.params.task);
+
+      // check if task not exists
       if (!task) {
+        // send false response
         res.json({
           success: false,
           message: "Invalid task ID",
@@ -29,6 +39,11 @@ router.post("/new/:task", async (req, res) => {
   }
 });
 
+/**
+ * @name /all/:task
+ * @method GET
+ * @description Router to get all comments of a task
+ */
 router.get("/all/:task", async (req, res) => {
   try {
     if (req.session.uid && req.session.role != "hr") {
@@ -45,6 +60,11 @@ router.get("/all/:task", async (req, res) => {
   }
 });
 
+/**
+ * @name /one/:task/:comment
+ * @method DELETE
+ * @description Router to delete a comment from a task
+ */
 router.delete("/one/:task/:comment", async (req, res) => {
   try {
     if (req.session.uid && req.session.role != "hr") {
