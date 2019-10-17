@@ -57,7 +57,7 @@ app.use(
   cors({
     origin: "http://ems.4iresearch.com/",
     credentials: true,
-    methods: ["GET", "DELETE", "PUT", "POST"]
+    methods: ["GET", "DELETE", "PUT", "POST", "OPTIONS"]
   })
 );
 app.use(helmet.hidePoweredBy({ setTo: "4 IR Web Sever Gateway" }));
