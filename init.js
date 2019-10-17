@@ -11,7 +11,7 @@ mongoose.Promise = require("bluebird");
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
-    console.log("Connected to DB");
+    console.log("[!] Connected to DB");
   } catch (error) {
     console.warn(error);
     process.exit(1);
@@ -37,4 +37,5 @@ var role = "hr";
   await new User({ name, email, password, role }).save();
   console.log("[!] Created HR");
   console.log("[!] Login Creds %s:%s", email, args[2]);
+  await mongoose.disconnect();
 })();
