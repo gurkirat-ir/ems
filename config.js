@@ -13,6 +13,6 @@ module.exports = {
   },
   api: {
     mail:
-      "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"
+      "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 "
   }
 };

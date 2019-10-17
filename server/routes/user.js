@@ -159,12 +159,16 @@ router.put("/reset-password", async (req, res) => {
     let _ = createHash("sha256")
       .update(p)
       .digest("base64");
-    await mailer.send({
-      from: conf.api.mail,
-      to: user.email,
-      subject: "[EMS] Reset Password Instructions",
-      html: `Hello ${user.name}<br><br>It seems you have requested for new password. Your new password is <strong><pre>${p}</pre></strong><br><br><center><i>This email is sent by the bot. Do not reply to this mail</i></center>`
-    });
+    mailer
+      .send({
+        from: conf.api.mail,
+        to: user.email,
+        subject: "[EMS] Reset Password Instructions",
+        html: `Hello ${user.name}<br><br>It seems you have requested for new password. Your new password is <strong><pre>${p}</pre></strong><br><br><center><i>This email is sent by the bot. Do not reply to this mail</i></center>`
+      })
+      .then(() => console.warn("Sent"))
+      .catch(() => console.log("Not sent"));
+
     user.password = _;
     await user.save();
   }
