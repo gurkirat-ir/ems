@@ -4,7 +4,7 @@ const mailer = require("@sendgrid/mail");
 const { createHash } = require("crypto");
 const conf = require("../../config");
 
-mailer.setApiKey(process.env.EMS_EMAIL_API);
+mailer.setApiKey(conf.api.mail);
 
 router.get("/whoami", async (req, res) => {
   try {
