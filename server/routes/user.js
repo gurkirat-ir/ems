@@ -147,30 +147,33 @@ router.get("/one/:id", async (req, res) => {
 });
 
 router.put("/reset-password", async (req, res) => {
-  let user = await User.findOne({ email: req.body.email });
-  res.json({
-    success: true,
-    message: "If this email is correct you will password reset instructions"
-  });
-  if (user) {
-    let p = Math.random()
-      .toString(36)
-      .substr(2);
-    let _ = createHash("sha256")
-      .update(p)
-      .digest("base64");
-    mailer
-      .send({
-        from: conf.api.mail,
+  try {
+    let user = await User.findOne({ email: req.body.email });
+
+    res.json({
+      success: true,
+      message: "If this email is correct you will password reset instructions"
+    });
+
+    if (user) {
+      let p = Math.random()
+        .toString(36)
+        .substr(2);
+      let _ = createHash("sha256")
+        .update(p)
+        .digest("base64");
+      await mailer.send({
+        from: conf.from,
         to: user.email,
         subject: "[EMS] Reset Password Instructions",
         html: `Hello ${user.name}<br><br>It seems you have requested for new password. Your new password is <strong><pre>${p}</pre></strong><br><br><center><i>This email is sent by the bot. Do not reply to this mail</i></center>`
-      })
-      .then(() => console.warn("Sent"))
-      .catch(() => console.log("Not sent"));
+      });
 
-    user.password = _;
-    await user.save();
+      user.password = _;
+      await user.save();
+    }
+  } catch (error) {
+    res.json({ success: false, message: "Something went wrong" });
   }
 });
 
