@@ -8,7 +8,9 @@
         <br />
         <br />
         <br />
-        <v-btn :to="{name:'dashboard'}" outlined color="black">Get me out of here!</v-btn>
+        <v-btn :to="{ name: 'dashboard' }" outlined color="black"
+          >Get me out of here!</v-btn
+        >
       </v-flex>
     </v-layout>
   </v-container>
