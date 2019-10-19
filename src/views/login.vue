@@ -8,6 +8,7 @@
           <v-card-text>
             <v-form v-model="form1" ref="form1">
               <v-text-field
+                @keypress.enter="login"
                 v-model="email"
                 label="E-mail"
                 :rules="[
@@ -19,6 +20,7 @@
             </v-form>
             <v-form v-model="form2" ref="form2">
               <v-text-field
+                @keypress.enter="login"
                 v-model="password"
                 label="Password"
                 type="password"
@@ -34,20 +36,13 @@
               color="black"
               href="/#/reset-password"
               @click.prevent="reset_password"
-              >reset password</v-btn
-            >
+            >reset password</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="black" class="white--text" @click="login">
               <v-icon left>exit_to_app</v-icon>login
             </v-btn>
           </v-card-actions>
-          <v-snackbar
-            v-model="snack.show"
-            color="black"
-            right
-            bottom
-            :timeout="4000"
-          >
+          <v-snackbar v-model="snack.show" color="black" right bottom :timeout="4000">
             {{ snack.text }}
             <v-btn text icon @click.native="snack.show = false">
               <v-icon>close</v-icon>

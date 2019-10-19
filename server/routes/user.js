@@ -26,14 +26,15 @@ router.post("/login", async (req, res) => {
     }
 
     let usr = await User.findOne({
-      email: req.body.email,
-      password: req.body.password
+      email: String(req.body.email),
+      password: String(req.body.password)
     });
 
     if (!usr) {
       res.json({ success: false, message: "Check email/password" });
       return;
     }
+
     req.session.uid = usr._id;
     req.session.role = usr.role;
 
@@ -212,4 +213,5 @@ router.get("/for-task", async (req, res) => {
     res.json({ success: false, message: "Something went wrong" });
   }
 });
+
 module.exports = router;
