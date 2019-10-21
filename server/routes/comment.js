@@ -24,17 +24,29 @@ router.post("/new/:task", async (req, res) => {
         });
         return;
       }
+
+      // instancing new comment object
       let comment = new Comment();
+
+      // assigning data to fields
       comment.who = req.session.uid;
       comment.what = req.body.content;
       comment.task = req.params.task;
 
+      // saving comment document
       await comment.save();
+
+      // adding comment to task
       task.comments.push(comment._id);
+
+      // saving task
       await task.save();
+
+      // sending response
       res.json({ success: true, message: "Posted" });
     }
   } catch (error) {
+    // sending error response
     res.json({ success: false, message: "Something went wrong" });
   }
 });
@@ -46,44 +58,21 @@ router.post("/new/:task", async (req, res) => {
  */
 router.get("/all/:task", async (req, res) => {
   try {
+    // check if user is not logged in as hr
     if (req.session.uid && req.session.role != "hr") {
+      // find comments
       let comments = await Comment.find(
+        // by task id
         { task: req.params.task },
+        // suppress task in output
         { task: false }
-      ).populate("who", { name: true, email: true });
+      )
+        // populate "who" field and suppress all fields except name, email
+        .populate("who", { name: true, email: true });
+      // send response
       res.json({ success: true, comments });
     } else {
-      res.json({ success: false, message: "Unauthorized access" });
-    }
-  } catch (error) {
-    res.json({ success: false, message: "Something went wrong" });
-  }
-});
-
-/**
- * @name /one/:task/:comment
- * @method DELETE
- * @description Router to delete a comment from a task
- */
-router.delete("/one/:task/:comment", async (req, res) => {
-  try {
-    if (req.session.uid && req.session.role != "hr") {
-      let task = await Task.findById(req.params.task);
-      if (!task) {
-        res.json({
-          success: false,
-          message: "Invalid task ID",
-          task: req.params.task
-        });
-        return;
-      }
-      await Comment.findByIdAndDelete(req.params.comment);
-      await Task.findByIdAndUpdate(req.params.task, {
-        $pull: { comments: req.params.comment }
-      });
-
-      res.json({ success: false, message: "Updated" });
-    } else {
+      // send error response
       res.json({ success: false, message: "Unauthorized access" });
     }
   } catch (error) {
