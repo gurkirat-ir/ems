@@ -9,63 +9,47 @@
         </v-btn>
       </v-card-title>
       <v-card-text>
-        <v-simple-table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th class="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(user, i) in users" :key="i">
-              <td>{{ user.name }}</td>
-              <td>{{ user.email }}</td>
-              <td>{{ user.role.toUpperCase() }}</td>
-              <td class="text-center">
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      v-on="on"
-                      text
-                      icon
-                      color="error"
-                      @click="delete_user(user._id)"
-                    >
-                      <v-icon>delete_forever</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>Delete User</span>
-                </v-tooltip>
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      v-on="on"
-                      text
-                      icon
-                      color="primary"
-                      :to="{
-                        name: 'edit-user',
-                        params: {
-                          user: {
-                            name: user.name,
-                            email: user.email,
-                            role: user.role
-                          },
-                          id: user._id
-                        }
-                      }"
-                    >
-                      <v-icon>edit</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>Edit User</span>
-                </v-tooltip>
-              </td>
-            </tr>
-          </tbody>
-        </v-simple-table>
+        <v-data-table
+          :headers="headers"
+          :items-per-page="5"
+          :items="users"
+          hide-default-footer
+        >
+          <template v-slot:item.action="{ item }">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  text
+                  icon
+                  color="red"
+                  v-on="on"
+                  @click="delete_user(item._id)"
+                >
+                  <v-icon>delete_forever</v-icon>
+                </v-btn>
+              </template>
+              <span>Delete User</span>
+            </v-tooltip>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  text
+                  v-on="on"
+                  icon
+                  color="green"
+                  :to="{
+                    name: 'edit-user',
+                    params: { id: item._id, user: item }
+                  }"
+                >
+                  <v-icon>edit</v-icon>
+                </v-btn>
+              </template>
+              <span>Edit User</span>
+            </v-tooltip>
+          </template>
+        </v-data-table>
       </v-card-text>
     </v-card>
     <v-snackbar v-model="snack.show" color="black" right bottom :timeout="4000">
@@ -82,6 +66,12 @@ import Axios from "axios";
 export default {
   data: () => ({
     snack: { show: false, text: "" },
+    headers: [
+      { name: "name", text: "Name", value: "name", sortable: false },
+      { name: "email", text: "Email", value: "email", sortable: false },
+      { name: "role", text: "Role", value: "role", sortable: false },
+      { name: "action", text: "Action", value: "action", sorble: false }
+    ],
     users: []
   }),
   methods: {

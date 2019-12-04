@@ -5,7 +5,7 @@
         <hr-employee></hr-employee>
       </v-flex>
       <v-flex xs12 md6 pa-1>
-        <all-projects></all-projects>
+        <all-projects :showCreateTask="false"></all-projects>
       </v-flex>
     </v-layout>
 
@@ -14,7 +14,7 @@
         <empr-employee></empr-employee>
       </v-flex>
       <v-flex xs12 md6 pa-1>
-        <all-projects></all-projects>
+        <all-projects :showCreateTask="true"></all-projects>
       </v-flex>
     </v-layout>
 

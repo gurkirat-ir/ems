@@ -11,7 +11,10 @@ const Task = require("../model/task");
 router.post("/new", async (req, res) => {
   try {
     // checking if logged in as employer
-    if (req.session.uid && req.session.role == "employer") {
+    if (
+      req.session.uid &&
+      (req.session.role == "employer" || req.session.role == "hr")
+    ) {
       // creating an instance of Project
       let project = new Project();
 
@@ -119,7 +122,10 @@ router.delete("/one/:pid", async (req, res) => {
 router.get("/one/:pid", async (req, res) => {
   try {
     // checking if logged in as employer
-    if (req.session.uid && req.session.role == "employer") {
+    if (
+      req.session.uid &&
+      (req.session.role == "employer" || req.session.role == "hr")
+    ) {
       // find the project by _id
       let proj = await Project.findById(req.params.pid)
         // populate tasks and suppress some field
@@ -152,7 +158,10 @@ router.get("/one/:pid", async (req, res) => {
 router.put("/one/:pid", async (req, res) => {
   try {
     // checking if logged in as employer
-    if (req.session.uid && req.session.role == "employer") {
+    if (
+      req.session.uid &&
+      (req.session.role == "employer" || req.session.role == "hr")
+    ) {
       // find project by _id and update fields
       let proj = await Project.findByIdAndUpdate(req.params.pid, {
         title: req.body.title,

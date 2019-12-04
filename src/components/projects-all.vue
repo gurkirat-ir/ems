@@ -59,6 +59,7 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn
+                  v-show="showCreateTask"
                   v-on="on"
                   text
                   icon
@@ -98,6 +99,7 @@
 import Axios from "axios";
 import moment from "moment";
 export default {
+  props: ["showCreateTask"],
   data: () => ({
     headers: [
       { name: "title", text: "Title", sortable: false, value: "title" },

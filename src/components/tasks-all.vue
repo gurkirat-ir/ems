@@ -152,7 +152,6 @@ export default {
       withCredentials: true
     });
     this.tasks = c.data.tasks;
-    console.log(c.data);
   }
 };
 </script>
