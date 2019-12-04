@@ -43,7 +43,10 @@ router.post("/new", async (req, res) => {
 router.all("/all", async (req, res) => {
   try {
     // checking if logged in as employer
-    if (req.session.uid && req.session.role == "employer") {
+    if (
+      req.session.uid &&
+      (req.session.role == "employer" || req.session.role == "hr")
+    ) {
       // find all projects
       let projects = await Project.find(
         {},

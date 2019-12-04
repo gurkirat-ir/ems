@@ -1,16 +1,19 @@
 <template>
   <v-container grid-list-xs fluid>
     <v-layout row wrap v-show="role == 'hr'">
-      <v-flex xs12>
+      <v-flex xs12 md6 pa-1>
         <hr-employee></hr-employee>
+      </v-flex>
+      <v-flex xs12 md6 pa-1>
+        <all-projects></all-projects>
       </v-flex>
     </v-layout>
 
     <v-layout row wrap v-show="role == 'employer'" mb-4>
-      <v-flex xs6 pa-2>
+      <v-flex xs12 md6 pa-1>
         <empr-employee></empr-employee>
       </v-flex>
-      <v-flex xs6 pa-2>
+      <v-flex xs12 md6 pa-1>
         <all-projects></all-projects>
       </v-flex>
     </v-layout>

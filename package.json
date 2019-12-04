@@ -10,7 +10,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "maintenance:start": "npm stop && pm2 start maintenance.js",
-    "maintenance:stop": "npm stop && npm start"
+    "maintenance:stop": "npm stop && npm start",
+    "start:dev": "nodemon server/server.js"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
